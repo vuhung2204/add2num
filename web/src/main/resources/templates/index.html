@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>MyBigNumber Web</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: #f5f5f5;
+            padding: 30px;
+        }
+        h2 { color: #333; }
+        form {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            width: 350px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        input {
+            margin: 5px 0;
+            padding: 8px;
+            width: 100%;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            width: 100%;
+            border: none;
+            border-radius: 5px;
+        }
+        .result {
+            margin-top: 15px;
+            background: #e9ffe8;
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+<h2>MyBigNumber – Cộng hai số lớn</h2>
+
+<form th:action="@{/sum}" method="post">
+    <label>Số thứ nhất:</label>
+    <input type="text" name="num1" th:value="${num1}">
+    <label>Số thứ hai:</label>
+    <input type="text" name="num2" th:value="${num2}">
+    <button type="submit">Cộng</button>
+</form>
+
+<div th:if="${result}" class="result">
+    <strong>Kết quả:</strong> <span th:text="${result}"></span>
+</div>
+
+<div th:if="${result}" class="result">
+    <b>Kết quả:</b> <span th:text="${result}"></span>
+
+    <h4>Chi tiết phép cộng:</h4>
+    <div th:utext="${steps}"></div>
+</div>
+</body>
+</html>
