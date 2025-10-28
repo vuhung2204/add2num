@@ -17,16 +17,17 @@ public class Add2NumController {
     }
 
     @PostMapping("/sum")
-    public String calculateSum(@RequestParam("num1") String num1,
-                               @RequestParam("num2") String num2,
-                               Model model) {
+    public String sumNumbers(@RequestParam("num1") String num1,
+                             @RequestParam("num2") String num2,
+                             Model model) {
         String result = MyBigNumber.sum(num1, num2);
         String logs = MyBigNumber.getLogs();
 
+        String[] steps = logs.split("<br>");
         model.addAttribute("num1", num1);
         model.addAttribute("num2", num2);
         model.addAttribute("result", result);
-        model.addAttribute("steps", logs);
+        model.addAttribute("steps", steps);
         return "index";
     }
 }

@@ -17,26 +17,31 @@
             width: 350px;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
-        input {
+        input, button {
             margin: 5px 0;
             padding: 8px;
             width: 100%;
-            border: 1px solid #ccc;
             border-radius: 5px;
         }
         button {
             background-color: #4CAF50;
             color: white;
-            padding: 10px;
-            width: 100%;
             border: none;
-            border-radius: 5px;
         }
         .result {
             margin-top: 15px;
             background: #e9ffe8;
             padding: 10px;
             border-radius: 5px;
+        }
+        .steps {
+            margin-top: 10px;
+            background: #fff;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .step-line {
+            display: none; margin-bottom: 5px;
         }
     </style>
 </head>
@@ -52,14 +57,29 @@
 </form>
 
 <div th:if="${result}" class="result">
-    <strong>Kết quả:</strong> <span th:text="${result}"></span>
+    <h4>Chi tiết từng bước:</h4>
+    <div class="steps" id="steps">
+        <div th:each="line, iStat : ${steps}"
+             th:text="${line}"
+             th:id="'step-' + ${iStat.index}"
+             class="step-line"></div>
+    </div>
+
+    <button id="nextBtn" onclick="showNextStep()">Bước tiếp theo</button>
 </div>
 
-<div th:if="${result}" class="result">
-    <b>Kết quả:</b> <span th:text="${result}"></span>
-
-    <h4>Chi tiết phép cộng:</h4>
-    <div th:utext="${steps}"></div>
-</div>
+<script>
+    let currentStep = 0;
+    function showNextStep() {
+        const step = document.getElementById('step-' + currentStep);
+        if (step) {
+            step.style.display = 'block';
+            currentStep++;
+        } else {
+            document.getElementById('nextBtn').innerText = 'Đã hết bước';
+            document.getElementById('nextBtn').disabled = true;
+        }
+    }
+</script>
 </body>
 </html>
