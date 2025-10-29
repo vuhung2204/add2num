@@ -48,6 +48,12 @@ public class MyBigNumber {
         }
 
         result.reverse();
+        int index = 0;
+        while (index < result.length() - 1 && result.charAt(index) == '0') {
+            index++;
+        }
+        if (index > 0) result.delete(0, index);
+
         logs.append("Kết quả cuối cùng: ").append(result).append("<br>");
         return result.toString();
     }
