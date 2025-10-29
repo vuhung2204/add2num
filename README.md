@@ -67,7 +67,7 @@ mvn clean install
 3️⃣ Chạy module web
 mvn spring-boot:run -pl web
 
-Truy cập tại: http://localhost:8080
+Truy cập tại: http://localhost:8088
 
 Kiểm thử (Unit Test) <a name="test"></a>
 Chạy toàn bộ test của module core: <br />
